@@ -61,6 +61,6 @@ function done(){var ok=document.getElementById('form-ok');if(ok){ok.style.displa
 function fallback(){var lines=[];data.forEach(function(v,k){if(k.charAt(0)!=='_')lines.push(k+': '+v);});
  location.href='mailto:Dan@DanBenoit.com?subject='+encodeURIComponent('Website inquiry - Dan Benoit Photo')+'&body='+encodeURIComponent(lines.join(NL));done();}
 var obj={};data.forEach(function(v,k){obj[k]=v;});
- fetch('https://formsubmit.co/ajax/Dan@DanBenoit.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
+ fetch('https://formsubmit.co/ajax/danbeaner@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
 });})();
 
