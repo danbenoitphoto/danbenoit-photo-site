@@ -38,11 +38,15 @@ setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(func
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   if(top)top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
-// Site intro: plays on external arrival, click/tap skips, auto-removes after ~5s (CSS fade is the fallback)
+// Site intro gateway: plays on external arrival, then offers PHOTO (this site) or WEB (web.danbenoit.com); a tap during the sting jumps straight to the choice
 (function(){var el=document.getElementById('intro');if(!el)return;var internal=false;try{internal=!!document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
 if(internal){el.remove();return;}
-var kill=function(){if(el.parentNode)el.remove();};
-el.addEventListener('click',kill);setTimeout(kill,5200);})();
+var web=document.getElementById('introWeb');if(web&&location.pathname.indexOf('/fr/')===0)web.href='https://web.danbenoit.com/fr/';
+var photo=document.getElementById('introPhoto');
+var bye=function(){el.classList.add('bye');setTimeout(function(){if(el.parentNode)el.remove();},650);};
+if(photo)photo.addEventListener('click',function(e){e.stopPropagation();bye();});
+el.addEventListener('click',function(){el.classList.add('show');});
+setTimeout(function(){el.classList.add('show');},2600);})();
 // v6.6: contact form — prefill from ?service=&date=, submit via FormSubmit AJAX to Dan's inbox, fall back to the visitor's email app
 (function(){var form=document.getElementById('inquiry');if(!form)return;
 var NL=String.fromCharCode(10);

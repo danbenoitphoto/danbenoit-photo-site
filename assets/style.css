@@ -176,7 +176,14 @@ footer.site .social a{color:#fff}
 }
 
 /* ---- v6 (Oct 25): logo sting, plans, form, lang toggle, reviews ---- */
-.intro{background:#050506;animation:introHide .7s ease 4.3s both;overflow:hidden}
+.intro{background:#050506;animation:introHide .8s ease 30s both;overflow:hidden}
+.intro-choices{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px;opacity:0;animation:fadeUp .8s ease 2.4s both}
+.intro.show .intro-choices{opacity:1;animation:none}
+.intro-btn{font:inherit;font-weight:700;letter-spacing:6px;text-indent:6px;font-size:clamp(15px,3.4vw,20px);color:#fff;background:transparent;border:2px solid var(--accent);border-radius:999px;padding:14px 38px;cursor:pointer;text-decoration:none;transition:transform .2s ease,background .2s ease}
+.intro-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
+.intro-btn.gold{background:var(--accent);color:#111}
+.intro-btn.gold:hover{background:#f3d489}
+.intro.bye{animation:introHide .6s ease both}
 .intro-ring{position:absolute;left:50%;top:50%;width:340px;height:340px;margin:-170px 0 0 -170px;opacity:.22;animation:ringspin 7s linear infinite}
 .intro-ring circle{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:10 14}
 @keyframes ringspin{to{transform:rotate(360deg)}}
