@@ -34,6 +34,7 @@ p.lead{color:var(--mut);margin:0 0 26px;max-width:70ch}
 .card .cap small{display:block;font-weight:400;font-size:13px;opacity:.85}
 .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:8px 0 6px}
 .svc{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.svc img.shot{width:100%;border-radius:10px;margin:0 0 12px;border:1px solid var(--line)}
 .svc h3{margin:0 0 6px;font-size:18px}
 .svc p{margin:0;color:var(--mut);font-size:15px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
