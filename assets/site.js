@@ -47,7 +47,7 @@ var bye=function(){el.classList.add('bye');setTimeout(function(){if(el.parentNod
 if(photo)photo.addEventListener('click',function(e){e.stopPropagation();bye();});
 el.addEventListener('click',function(){el.classList.add('show');});
 setTimeout(function(){el.classList.add('show');},2600);})();
-// v6.6: contact form — prefill from ?service=&date=, submit via FormSubmit AJAX to Dan's inbox, fall back to the visitor's email app
+// v6.6: contact form — prefill from ?service=&date=, submit via Web3Forms AJAX to Dan's inbox, fall back to the visitor's email app
 (function(){var form=document.getElementById('inquiry');if(!form)return;
 var NL=String.fromCharCode(10);
 var q=new URLSearchParams(location.search);
@@ -60,7 +60,7 @@ var data=new FormData(form);
 function done(){var ok=document.getElementById('form-ok');if(ok){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});}form.reset();}
 function fallback(){var lines=[];data.forEach(function(v,k){if(k.charAt(0)!=='_')lines.push(k+': '+v);});
  location.href='mailto:Dan@DanBenoit.com?subject='+encodeURIComponent('Website inquiry - Dan Benoit Photo')+'&body='+encodeURIComponent(lines.join(NL));done();}
-var obj={};data.forEach(function(v,k){obj[k]=v;});
- fetch('https://formsubmit.co/ajax/danbeaner@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
+var obj={};data.forEach(function(v,k){if(k.charAt(0)!=='_')obj[k]=v;});
+ fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
 });})();
 
