@@ -108,6 +108,22 @@ header.site.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.10)}
 .drone-hero .kick{color:var(--accent);font-weight:700;letter-spacing:2px;font-size:13px;text-transform:uppercase;margin:0 0 10px;animation:fadeUp .7s ease both}
 .drone-hero h1{font-size:clamp(34px,5vw,52px);margin:0 0 12px;animation:fadeUp .7s .1s ease both}
 .drone-hero p.sub{font-size:19px;color:#d7dae0;max-width:62ch;margin:0 0 24px;animation:fadeUp .7s .2s ease both}
+.ws-hero .inner{display:grid;grid-template-columns:1.02fr .98fr;gap:42px;align-items:center}
+.laptop{position:relative;width:100%;max-width:560px;justify-self:end;transform:perspective(1100px) rotateY(-9deg) rotateX(2deg);animation:lapFloat 7s ease-in-out infinite alternate}
+.laptop .lid{background:linear-gradient(180deg,#26292f,#101215);border:1px solid #3a3e45;border-radius:16px;padding:12px 12px 18px;box-shadow:0 34px 60px rgba(0,0,0,.5)}
+.laptop .screen{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:8px;background:#0a0c10}
+.laptop .screen img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:kbSlide 30s linear infinite}
+.laptop .screen img:nth-child(2){animation-delay:5s}
+.laptop .screen img:nth-child(3){animation-delay:10s}
+.laptop .screen img:nth-child(4){animation-delay:15s}
+.laptop .screen img:nth-child(5){animation-delay:20s}
+.laptop .screen img:nth-child(6){animation-delay:25s}
+.laptop .base{height:14px;margin:3px -16px 0;background:linear-gradient(180deg,#3c4046,#141518);border-radius:4px 4px 14px 14px;box-shadow:0 18px 28px rgba(0,0,0,.45)}
+.laptop .base::before{content:"";display:block;width:110px;height:5px;margin:0 auto;background:#0b0c0e;border-radius:0 0 8px 8px}
+@keyframes kbSlide{0%{opacity:0;transform:scale(1.02) translate(0,0)}2.5%{opacity:1}16.5%{opacity:1}20%{opacity:0;transform:scale(1.1) translate(-1.4%,-1.2%)}100%{opacity:0;transform:scale(1.1) translate(-1.4%,-1.2%)}}
+@keyframes lapFloat{from{transform:perspective(1100px) rotateY(-9deg) rotateX(2deg) translateY(0)}to{transform:perspective(1100px) rotateY(-9deg) rotateX(2deg) translateY(-8px)}}
+@media(max-width:860px){.ws-hero .inner{grid-template-columns:1fr;gap:28px}.laptop{justify-self:center}}
+@media (prefers-reduced-motion:reduce){.laptop{animation:none}.laptop .screen img{animation:none}.laptop .screen img:first-child{opacity:1}}
 .checks{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .checks li{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-weight:600}
 .checks li::before{content:"\2713  ";color:var(--accent);font-weight:800}
