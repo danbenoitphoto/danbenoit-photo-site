@@ -196,6 +196,9 @@ footer.site .social a{color:#fff}
 /* ---- v6 (Oct 25): logo sting, plans, form, lang toggle, reviews ---- */
 .intro{background:#050506;animation:introHide .8s ease 30s both;overflow:hidden}
 .intro-choices{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px;opacity:0;animation:fadeUp .8s ease 2.4s both}
+.intro-lang{position:absolute;top:16px;right:18px;display:flex;gap:8px;z-index:6}
+.intro-lang a{color:#cfd3da;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:2px;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px}
+.intro-lang a.on{background:var(--accent);border-color:var(--accent);color:#111}
 .intro.show .intro-choices{opacity:1;animation:none}
 .intro-btn{font:inherit;font-weight:700;letter-spacing:6px;text-indent:6px;font-size:clamp(15px,3.4vw,20px);color:#fff;background:transparent;border:2px solid var(--accent);border-radius:999px;padding:14px 38px;cursor:pointer;text-decoration:none;transition:transform .2s ease,background .2s ease}
 .intro-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
