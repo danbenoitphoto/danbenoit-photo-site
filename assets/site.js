@@ -38,16 +38,23 @@ setTimeout(function(){document.querySelectorAll('.reveal:not(.in)').forEach(func
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   if(top)top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
-// Site intro gateway: plays on external arrival, then offers PHOTO (this site) or WEB (web.danbenoit.com); a tap during the sting jumps straight to the choice
-(function(){var el=document.getElementById('intro');if(!el)return;var internal=false;try{internal=!!document.referrer&&new URL(document.referrer).origin===location.origin;}catch(e){}
-if(internal){el.remove();return;}
+// Site intro: fleet standard (Nov 27, 2026) — plays ONCE per session (sessionStorage intro_seen), real Skip button, auto-dismiss ~3.4s; EN/FR toggle, logo/Home clicks and back-button restores never replay it. During the sting it still offers PHOTO (this site) or WEB (web.danbenoit.com).
+(function(){var el=document.getElementById('intro');if(!el)return;
+var seen=false;try{seen=sessionStorage.getItem('intro_seen')==='1';}catch(e){}
+if(seen){el.remove();return;}
+var gone=false;
+var bye=function(){if(gone)return;gone=true;try{sessionStorage.setItem('intro_seen','1');}catch(e){}el.classList.add('bye');setTimeout(function(){if(el.parentNode)el.remove();},650);};
 var web=document.getElementById('introWeb');if(web&&location.pathname.indexOf('/fr/')===0)web.href='https://web.danbenoit.com/fr/';
+if(web)web.addEventListener('click',function(){try{sessionStorage.setItem('intro_seen','1');}catch(e){}});
 var photo=document.getElementById('introPhoto');
-var bye=function(){el.classList.add('bye');setTimeout(function(){if(el.parentNode)el.remove();},650);};
 if(photo)photo.addEventListener('click',function(e){e.stopPropagation();bye();});
+var skip=document.getElementById('introSkip');
+if(skip)skip.addEventListener('click',function(e){e.stopPropagation();bye();});
 el.addEventListener('click',function(){el.classList.add('show');});
-setTimeout(function(){el.classList.add('show');},2600);})();
-// v6.6: contact form — prefill from ?service=&date=, submit via Web3Forms AJAX to Dan's inbox, fall back to the visitor's email app
+setTimeout(function(){el.classList.add('show');},2600);
+setTimeout(bye,3400);
+window.addEventListener('pageshow',function(e){if(e.persisted){try{if(sessionStorage.getItem('intro_seen')==='1'&&el.parentNode)el.remove();}catch(err){}}});})();
+// v6.6: contact form — prefill from ?service=&date=, submit via FormSubmit AJAX to Dan's inbox (dan@danbenoit.com, fleet standard Nov 27, 2026; was Web3Forms), fall back to the visitor's email app
 (function(){var form=document.getElementById('inquiry');if(!form)return;
 var NL=String.fromCharCode(10);
 var q=new URLSearchParams(location.search);
@@ -60,8 +67,8 @@ var data=new FormData(form);
 function done(){var ok=document.getElementById('form-ok');if(ok){ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});}form.reset();}
 function fallback(){var lines=[];data.forEach(function(v,k){if(k.charAt(0)!=='_')lines.push(k+': '+v);});
  location.href='mailto:Dan@DanBenoit.com?subject='+encodeURIComponent('Website inquiry - Dan Benoit Photo')+'&body='+encodeURIComponent(lines.join(NL));done();}
-var obj={};data.forEach(function(v,k){if(k.charAt(0)!=='_')obj[k]=v;});
- fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
+var obj={};data.forEach(function(v,k){if(k!=='_honey')obj[k]=v;});
+ fetch('https://formsubmit.co/ajax/dan@danbenoit.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
 });})();
 document.querySelectorAll("[data-year]").forEach(function(el){el.textContent=new Date().getFullYear();});
 
