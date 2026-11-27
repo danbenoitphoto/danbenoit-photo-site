@@ -172,8 +172,8 @@ footer.site .social a{color:#fff}
 .grid{align-items:start}
 .video{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-/* ---- site intro (home; plays on external arrival, tap to skip, ~5s) ---- */
-.intro{position:fixed;inset:0;z-index:300;background:#101216;display:flex;align-items:center;justify-content:center;animation:introHide .6s ease 2.2s both}
+/* ---- site intro (home; fleet standard Nov 27, 2026: once per session via sessionStorage, Skip button, JS auto-dismiss ~3.4s) ---- */
+.intro{position:fixed;inset:0;z-index:300;background:#101216;display:flex;align-items:center;justify-content:center}
 .intro-in{text-align:center;padding:20px}
 .intro-logo{font-family:'Fraunces',Georgia,serif;font-weight:700;color:#fff;font-size:clamp(38px,10vw,78px);letter-spacing:8px;animation:introLogo .85s ease .1s both}
 .intro-line{height:3px;background:var(--accent);margin:20px auto 18px;width:min(360px,74vw);transform:scaleX(0);animation:lineGrow 1.1s ease 1.1s both}
@@ -194,7 +194,9 @@ footer.site .social a{color:#fff}
 }
 
 /* ---- v6 (Oct 25): logo sting, plans, form, lang toggle, reviews ---- */
-.intro{background:#050506;animation:introHide .8s ease 30s both;overflow:hidden}
+.intro{background:#050506;overflow:hidden}
+.intro-skip{position:absolute;bottom:22px;right:22px;z-index:6;color:#cfd3da;background:transparent;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 18px;font:inherit;font-weight:700;font-size:13px;letter-spacing:2px;cursor:pointer}
+.intro-skip:hover{background:rgba(255,255,255,.1);color:#fff}
 .intro-choices{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px;opacity:0;animation:fadeUp .8s ease 2.4s both}
 .intro-lang{position:absolute;top:16px;right:18px;display:flex;gap:8px;z-index:6}
 .intro-lang a{color:#cfd3da;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:2px;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px}
