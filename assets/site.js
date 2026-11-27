@@ -63,4 +63,5 @@ function fallback(){var lines=[];data.forEach(function(v,k){if(k.charAt(0)!=='_'
 var obj={};data.forEach(function(v,k){if(k.charAt(0)!=='_')obj[k]=v;});
  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(obj)}).then(function(r){if(r.ok)done();else fallback();}).catch(fallback);
 });})();
+document.querySelectorAll("[data-year]").forEach(function(el){el.textContent=new Date().getFullYear();});
 
